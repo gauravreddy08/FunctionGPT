@@ -1,0 +1,22 @@
+[
+    {
+        "type": "function",
+        "function": {
+            "name": "get_correct_options",
+            "description": "Get the correct option number(s) to the question.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "options": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "description": "A list of correct option numbers to the question."
+                    }
+                },
+                "required": ["options"]
+            }
+        }
+    }
+]

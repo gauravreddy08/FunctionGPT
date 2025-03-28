@@ -20,7 +20,7 @@ class FunctionGPTApp(rumps.App):
     
 
 
-    
+
     def start_listener(self):
         def on_press(key):
             if key == keyboard.Key.f1:
@@ -28,11 +28,15 @@ class FunctionGPTApp(rumps.App):
                             {"role": "user", "content": pyperclip.paste()}]
                 answer = self.process_text(messages)
                 self.title = answer[:50] + "..." if len(answer) > 50 else answer
+            if key == keyboard.Key.f2:
+                messages = [ {"role": "user", "content":  pyperclip.paste()}] 
+                chat = client.chat.completions.create(model="gpt-4o", messages=messages)
+                reply = chat.choices[0].message.content 
+                print(reply)
+                pyperclip.copy(reply)
         
         self.keyboard_listener = keyboard.Listener(on_press=on_press)
         self.keyboard_listener.start()
-    
-
 
     def process_text(self, messages):
         try:
